@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Flex, Text, Input, Select, Button} from '@chakra-ui/react';
+import { Divider } from '@chakra-ui/react';
 
 function HomeSwap() {
     return ( 
@@ -48,8 +49,23 @@ function HomeSwap() {
                 </Box>
             </Box>
             <Box>
-                <Box flexDirection={"column"}  width={"500px"} height={"fit-content"} >
-                    
+                <Box mt={"35px"}  flexDirection={"column"} justifyContent={"center"} alignContent={"center"} padding={"30px"} textAlign={"center"} color={"white"} bgColor={"#2c2c2c"}  width={"500px"} height={"fit-content"} borderRadius={"30px"} >
+                    <Text fontSize={"20px"} fontWeight={"bold"} >Current Public Key</Text>
+                    <Text fontSize={"20px"} fontWeight={"bold"} >0xE4F67</Text>
+                    <Button variant={"solid"} colorScheme={"whiteAlpha"} alignSelf={"center"} mt={"10px"}>Generate Private Key</Button>
+
+                </Box>
+                <Box mt={"35px"}  flexDirection={"column"} justifyContent={"center"} alignContent={"center"} padding={"30px"} textAlign={"center"} color={"white"} bgColor={"#2c2c2c"}  width={"500px"} height={"fit-content"} borderRadius={"30px"} >
+                    <Text fontSize={"20px"} fontWeight={"bold"} >Current Offline Signed Transaction</Text>
+                    <Divider/>
+                    <br/>
+                    <Text fontSize={"15px"} fontWeight={"semibold"} >Nonce : </Text>
+                    <Text fontSize={"15px"} fontWeight={"semibold"} >gasPrice : </Text>
+                    <Text fontSize={"15px"} fontWeight={"semibold"} >gasLimit : </Text>
+                    <Text fontSize={"15px"} fontWeight={"semibold"} >To : </Text>
+                    <Text fontSize={"15px"} fontWeight={"semibold"} >Value : </Text>
+                    <Button variant={"solid"} colorScheme={"whiteAlpha"} alignSelf={"center"} mt={"10px"}>Publish to Blockchain</Button>
+
                 </Box>
             </Box>
         </Flex></>
