@@ -31,26 +31,26 @@ async function Unioff() {
 
   const tx = {
     nonce: 1,
-    gasPrice: '25000',
-    gasLimit: '25000',
+    gasPrice: '21000',
+    gasLimit: '400',
     to: '0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45',
     value: 1000000000000,
     data: contractData,
     chainId:3,
   };
 
-  var contractData = await myContract.methods.swapExactTokensForTokens('100000',10000,['0xc778417E063141139Fce010982780140Aa0cD5Ab','0xaD6D458402F60fD3Bd25163575031ACDce07538D'],'0xd4ab9d0cf7242b7e14df24b1b0f6c10ecc05ff72').encodeABI();
+  var contractData = await myContract.methods.swapExactTokensForTokens(100000,10000,['0xc778417E063141139Fce010982780140Aa0cD5Ab','0xaD6D458402F60fD3Bd25163575031ACDce07538D'],'0xd4ab9d0cf7242b7e14df24b1b0f6c10ecc05ff72').encodeABI();
   //var contractData1 = await tx.methods.swapTokensForExactETH('100000',['0xc778417E063141139Fce010982780140Aa0cD5Ab','0xaD6D458402F60fD3Bd25163575031ACDce07538D'],'0xd4ab9d0cf7242b7e14df24b1b0f6c10ecc05ff72',	1685315649).encodeABI();
   // sign and serialize the transaction 
   // let rawTransaction = await wallet.signTransaction(transaction).then(ethers.utils.serializeTransaction(transaction));
-
-  // print the raw transaction hash
-  console.log('Raw txhash string ' + contractData);
+// let gethProxy = await fetch(`https://api-ropsten.etherscan.io/api?module=proxy&action=eth_sendRawTransaction&hex=${contractData}&apikey=ID5DKPHJ6SYM1UQDK1IKECAXKIPPC9EX2C`);
+//      let response = await gethProxy.json();
+//     console.log('Raw txhash string ' + response);
+    console.log(contractData)
   return contractData;
 
-//   // pass the raw transaction hash to the "eth_sendRawTransaction" endpoint
-//   let gethProxy = await fetch(`https://api-ropsten.etherscan.io/api?module=proxy&action=eth_sendRawTransaction&hex=${rawTransaction}&apikey=YourApiKeyToken`);
-//   let response = await gethProxy.json();
+
+    
 
 //   // print the API response  
 //   console.log(response);
