@@ -92,7 +92,7 @@ function HomeSwap() {
                     <Input onChange={e => setPvtKey(e.target.value)} variant={"outline"} mt={"10px"} placeholder="Enter your private key" />
                     <Button variant={"solid"} placeholder="Enter Private Key" colorScheme={"whiteAlpha"} alignSelf={"center"} mt={"10px"} >Set Private Key</Button>
                 </Box>
-                <Box mt={"35px"}  flexDirection={"column"} justifyContent={"center"} alignContent={"center"} padding={"30px"} textAlign={"center"} color={"white"} bgColor={"#2c2c2c"}  width={"500px"} height={"fit-content"} borderRadius={"30px"} >
+                <Box mt={"35px"} mb={"250px"} flexDirection={"column"} justifyContent={"center"} alignContent={"center"} padding={"30px"} textAlign={"center"} color={"white"} bgColor={"#2c2c2c"}  width={"500px"} height={"fit-content"} borderRadius={"30px"} >
                     <Text fontSize={"20px"} fontWeight={"bold"} >Current Offline Signed Transaction</Text>
                     <Divider/>
                     <br/>
