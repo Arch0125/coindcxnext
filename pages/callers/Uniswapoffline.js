@@ -5,13 +5,13 @@ const fetch = require('node-fetch');
 import jsonInterface  from './jsonInterface.json'
 
 
+
 async function Unioff() {
 
-  let web3 = new Web3;
+  let web3 = new Web3(Web3.currentProvider);
   // defining the wallet private key
-  let privatekey = 'CE75F1A875F2DB7FB064F5DBD302B0C77FFEAA18CC4C314167A5111A04F79AFA';
+  let privatekey = '078e329378f4c1ca774b87f37fbcf3bbd27679eb2beef946547724f8ea7115cb';
   let wallet = new ethers.Wallet(privatekey);
-
   // print the wallet address
 
   console.log('Using wallet address ' + wallet.address);
@@ -30,23 +30,22 @@ async function Unioff() {
   var myContract = new web3.eth.Contract(jsonInterface,'0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45')
 
   const tx = {
-    nonce: 1,
-    gasPrice: '21000',
-    gasLimit: '400',
-    to: '0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45',
-    value: 1000000000000,
+    nonce:100,
+    to: '0xD4Ab9d0cf7242B7E14df24B1b0F6C10eCc05fF72',
     data: contractData,
     chainId:3,
+    gasLimit: 25000,
+    gasPrice:25000
   };
 
-  var contractData = await myContract.methods.swapExactTokensForTokens(100000,10000,['0xc778417E063141139Fce010982780140Aa0cD5Ab','0xaD6D458402F60fD3Bd25163575031ACDce07538D'],'0xd4ab9d0cf7242b7e14df24b1b0f6c10ecc05ff72').encodeABI();
+  var contractData = await myContract.methods.swapExactTokensForTokens(10000,1000,['0xc778417E063141139Fce010982780140Aa0cD5Ab','0xaD6D458402F60fD3Bd25163575031ACDce07538D'],'0xD4Ab9d0cf7242B7E14df24B1b0F6C10eCc05fF72').encodeABI();
   //var contractData1 = await tx.methods.swapTokensForExactETH('100000',['0xc778417E063141139Fce010982780140Aa0cD5Ab','0xaD6D458402F60fD3Bd25163575031ACDce07538D'],'0xd4ab9d0cf7242b7e14df24b1b0f6c10ecc05ff72',	1685315649).encodeABI();
   // sign and serialize the transaction 
-  // let rawTransaction = await wallet.signTransaction(transaction).then(ethers.utils.serializeTransaction(transaction));
+let rawTransaction = await wallet.signTransaction(tx).then(ethers.utils.serializeTransaction(tx));
 // let gethProxy = await fetch(`https://api-ropsten.etherscan.io/api?module=proxy&action=eth_sendRawTransaction&hex=${contractData}&apikey=ID5DKPHJ6SYM1UQDK1IKECAXKIPPC9EX2C`);
 //      let response = await gethProxy.json();
 //     console.log('Raw txhash string ' + response);
-    console.log(contractData)
+    console.log(rawTransaction)
   return contractData;
 
 
