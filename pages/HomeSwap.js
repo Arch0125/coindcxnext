@@ -3,6 +3,7 @@ import { Box, Flex, Text, Input, Select, Button} from '@chakra-ui/react';
 import { Divider } from '@chakra-ui/react';
 import Web3 from 'web3';
 import { useEffect, useState } from 'react';
+import Unioff from './callers/Uniswapoffline';
 
 function HomeSwap() {
 
@@ -12,6 +13,7 @@ function HomeSwap() {
     const[toUniToken,setToUniToken]=useState('');
     const[BnbToken,setBnbToken]=useState('');
     const[toBnbToken,setToBnbToken]=useState('');
+    const[rawtx,setRawtx]=useState(null);
 
     const checkWalletHandler= async() =>{
         const {ethereum} = window;
@@ -28,20 +30,8 @@ function HomeSwap() {
         }
     }
 
-    const UniswapOffline = async(pvtKey) => {
-        let web3 = new Web3;
-        var tx = {
-            nonce: 1,
-            gasPrice: 25000,
-            gasLimit: 25000,
-            to: 'contractAddress',
-            value: 1000000,
-            data: 'contractData',
-            chainId : 1,
-        };
-
-        let acc = await web3.eth.accounts.wallet.add(pvtKey);
-        console.log(acc);
+    const getrawtx = async() =>{
+        await setRawtx(Unioff)
     }
 
 
@@ -70,10 +60,10 @@ function HomeSwap() {
                     <option value='0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'>UNI</option>
                     </Select>
                     <Input placeholder='$0.00' variant={"outline"} mt={"15px"} bgColor={"#292929"} borderColor={"blackAlpha.700"} color={"white"} _hover={"none"} _active={"none"} />
-                    <Button onClick={UniswapOffline} variant={"solid"} colorScheme={"whiteAlpha"} alignSelf={"center"} mt={"10px"} ml={"10vw"} >Sign Offline Transaction</Button>
+                    <Button onClick={getrawtx} variant={"solid"} colorScheme={"whiteAlpha"} alignSelf={"center"} mt={"10px"} ml={"10vw"} >Sign Offline Transaction</Button>
 
                 </Box>
-                <Box padding={"20px"} mt={"100px"} width={"80%"} height={"fit-content"} bgColor={"#242124"} borderRadius={"30px"}>
+                {/* <Box padding={"20px"} mt={"100px"} width={"80%"} height={"fit-content"} bgColor={"#242124"} borderRadius={"30px"}>
                 <Text textAlign={"center"} fontWeight={"bold"} color={'white'} >Binance Offline Portal</Text>
 
                     <Text color={"white"} >From Token</Text>
@@ -92,7 +82,7 @@ function HomeSwap() {
                     <Input placeholder='$0.00' variant={"outline"} mt={"15px"} bgColor={"#292929"} borderColor={"blackAlpha.700"} color={"white"} _hover={"none"} _active={"none"} />
                     <Button variant={"solid"} colorScheme={"whiteAlpha"} alignSelf={"center"} mt={"10px"} ml={"10vw"} >Sign Offline Transaction</Button>
 
-                </Box>
+                </Box> */}
             </Box>
             <Box>
                 <Box mt={"35px"}  flexDirection={"column"} justifyContent={"center"} alignContent={"center"} padding={"30px"} textAlign={"center"} color={"white"} bgColor={"#2c2c2c"}  width={"500px"} height={"fit-content"} borderRadius={"30px"} >
@@ -106,11 +96,7 @@ function HomeSwap() {
                     <Text fontSize={"20px"} fontWeight={"bold"} >Current Offline Signed Transaction</Text>
                     <Divider/>
                     <br/>
-                    <Text fontSize={"15px"} fontWeight={"semibold"} >Nonce : </Text>
-                    <Text fontSize={"15px"} fontWeight={"semibold"} >gasPrice : </Text>
-                    <Text fontSize={"15px"} fontWeight={"semibold"} >gasLimit : </Text>
-                    <Text fontSize={"15px"} fontWeight={"semibold"} >To : </Text>
-                    <Text fontSize={"15px"} fontWeight={"semibold"} >Value : </Text>
+                    <Text fontSize={"15px"} fontWeight={"semibold"} >Raw Transaction Hash : </Text>
                     <Button variant={"solid"} colorScheme={"whiteAlpha"} alignSelf={"center"} mt={"10px"}>Publish to Blockchain</Button>
 
                 </Box>
